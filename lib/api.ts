@@ -78,15 +78,14 @@ export async function updateBookAPI(
   bookData: Book
 ): Promise<Book> {
   try {
-    const updatedBook = await fetcher<Book>(`${API_URL}/${bookId}`, {
+    await fetcher<Book>(`${API_URL}/${bookId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bookData),
     });
-    console.log(`[API] Book ${bookId} updated successfully.`, updatedBook);
-    return updatedBook;
+    return bookData; // Return the updated book data
   } catch (error) {
     console.error(`Failed to update book ${bookId}:`, error);
     throw error;
