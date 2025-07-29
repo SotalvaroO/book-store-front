@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-
+/tmpnodejsnpm-cache
 # next.js
 /.next/
 /out/
