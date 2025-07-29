@@ -10,6 +10,11 @@ async function fetcher<T>(url: string, options?: RequestInit): Promise<T> {
       throw new Error(`API call failed with status: ${response.status}`);
     }
 
+    // If the response is empty, return an empty object or array based on the expected type
+    if (response.status === 204) {
+      return {} as T; // Return an empty object for 204 No Content
+    }
+
     return (await response.json()) as T;
   } catch (error) {
     console.error("Fetcher Error:", error);
